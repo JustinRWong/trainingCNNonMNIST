@@ -29,8 +29,8 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 
 
 model = Sequential()
-model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28,28,1)) )
-model.add(Conv2D(64, (3,3), activation='relu'))
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(28,28,1)) )
+model.add(Conv2D(32, (3,3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(.25))
 model.add(Flatten())
@@ -40,6 +40,6 @@ model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adadelta(), metrics=['accuracy'])
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epoches, verbose=1, validation_data=(x_test, y_test))
-score = modele.evaluate(x_teest, y_test, verbose=0)
+score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss', score[0])
 print('Test accuracy', score[1])
